@@ -19,8 +19,8 @@ class DMSCoordinates(NamedTuple):
     lat: DMSCoordinate
 
     @staticmethod
-    def convert_dms_to_dd(input: DMSCoordinate) -> float:
+    def _convert_dms_to_dd(input: DMSCoordinate) -> float:
         return input.degrees + input.minutes // 60 + input.minutes / 60 + input.seconds // 360 + input.seconds / 3600
 
     def convert_to_dd(self) -> DDCoordinates:
-        return DDCoordinates(self.convert_dms_to_dd(self.long), self.convert_dms_to_dd(self.lat))
+        return DDCoordinates(self._convert_dms_to_dd(self.long), self._convert_dms_to_dd(self.lat))

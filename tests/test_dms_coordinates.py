@@ -15,4 +15,4 @@ def test_convert_to_dd():
 def test_dms_coordinates_repr():
     dms = DMSCoordinate("48:23:23.4")
     dmsc = DMSCoordinates(dms, dms)
-    assert """48° 23' 23.4\"""" == dmsc.long
+    assert """48° 23' 23.4\"""" == str(dmsc.long)

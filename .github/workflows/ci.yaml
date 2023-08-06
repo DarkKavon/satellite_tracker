@@ -1,0 +1,20 @@
+name: Test, build and publish server
+
+on:
+  push
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run data producer tests
+        run: |
+          pytest --cov=data_producer/src data_producer/tests

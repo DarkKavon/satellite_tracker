@@ -40,4 +40,5 @@ if __name__ == "__main__":
             else:
                 logger.info(f"Skipping sending for {record['name']}...")
         
+        logger.info(f"Sleeping {SLEEP_MINUTES} minutes...")
         sleep(60 * SLEEP_MINUTES)

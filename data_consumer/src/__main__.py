@@ -20,10 +20,11 @@ if __name__ == "__main__":
 
     consumer = KafkaConsumer(TOPIC, bootstrap_servers = "localhost:29092")
     logger.info("Kafka consumer registered...")
+    
     mdb = MongoDBConnector(mongo_url, mongo_db)
     logger.info("Connection with MongoDB established...")
 
     logger.info("Start reading records...")
     for record in consumer:
-        mdb.insert(mongo_collection, json.loads(record.value.decode()))
-        logger.info(f"Record about {json.loads(record.value.decode())['satellite_name']} inserted to database...")
+        mdb.insert(mongo_collection, decoded := json.loads(record.value.decode()))
+        logger.info(f"Record about {decoded['satellite_name']} inserted to database...")

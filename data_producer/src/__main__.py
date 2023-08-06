@@ -29,7 +29,13 @@ if __name__ == "__main__":
         logger.info("Start sending info...")
 
         response = requests.get("http://tle.ivanstanojevic.me/api/tle")
-        response = json.loads(response.text)['member']
+        try:
+            response = json.loads(response.text)['member']
+        except json.decoder.JSONDecodeError as e:
+            if response.status_code == 403:
+                logger.error("Access denied!")
+            raise RuntimeError("Access to remote API denied.")
+
         
         for record in response:
             if record['name'] not in last_sent_records.keys() or last_sent_records[record['name']] != record['date']:

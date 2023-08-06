@@ -18,7 +18,7 @@ if __name__ == "__main__":
     logger = logging.getLogger()
     logger.addHandler(stream_handler)
 
-    SLEEP_MINUTES = 60
+    SLEEP_MINUTES = 15
     TOPIC = "SATELLITE_TRACKER"
     last_sent_records = {}
 

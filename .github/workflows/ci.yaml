@@ -15,6 +15,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run data producer tests
         run: |
-          pytest --cov=src tests
+          pytest --cov=data_producer/src data_producer/tests

@@ -14,9 +14,7 @@ if __name__ == "__main__":
         level=logging.INFO,
         format='%(asctime)s %(levelname)s %(message)s'
     )
-    stream_handler = logging.StreamHandler()
     logger = logging.getLogger()
-    logger.addHandler(stream_handler)
 
     SLEEP_MINUTES = 15
     TOPIC = "SATELLITE_TRACKER"

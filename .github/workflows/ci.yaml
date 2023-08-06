@@ -18,3 +18,7 @@ jobs:
       - name: Run data producer tests
         run: |
           pytest --cov=data_producer/src data_producer/tests
+
+      - name: Run data consumer tests
+        run: |
+          pytest -cov=data_consumer/src data_consumer/tests

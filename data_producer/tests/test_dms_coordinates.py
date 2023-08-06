@@ -1,8 +1,8 @@
 import os
 import sys
 sys.path.append(os.getcwd())
-from src.coordniates.dms_coordinates import DMSCoordinates, DMSCoordinate
-from src.coordniates.dd_coordinates import DDCoordinates
+from data_producer.src.coordniates.dms_coordinates import DMSCoordinates, DMSCoordinate
+from data_producer.src.coordniates.dd_coordinates import DDCoordinates
 
 
 def test_convert_to_dd():
@@ -16,3 +16,9 @@ def test_dms_coordinates_repr():
     dms = DMSCoordinate("48:23:23.4")
     dmsc = DMSCoordinates(dms, dms)
     assert """48° 23' 23.4\"""" == str(dmsc.long)
+
+
+def test_to_json():
+    dms = DMSCoordinate("48:23:23.4")
+    dmsc = DMSCoordinates(dms, dms)
+    assert {"long": "48° 23' 23.4\"", "lat": "48° 23' 23.4\""} == dmsc.to_json()

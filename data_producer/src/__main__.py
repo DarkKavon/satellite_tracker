@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 from data_producer.src.utils.serializer import serializer
-from data_producer.src.utils.prepare_date import prepare_data
+from data_producer.src.utils.prepare_data import prepare_data
 from kafka import KafkaProducer
 from time import sleep
 import requests
@@ -32,9 +32,10 @@ if __name__ == "__main__":
         response = json.loads(response.text)['member']
         for record in response:
             if record['name'] not in last_sent_records.keys() or last_sent_records[record['name']] != record['date']:
-                logging.info(f"Info about {record['name']} sent...")
+                logging.info(f"Info about {record['name']}: {record}")
                 producer.send(TOPIC, prepare_data(record))
                 last_sent_records[record['name']] = record['date']
+                logging.info(f"Info about {record['name']} sent...")
             else:
                 logger.info(f"Skipping sending for {record['name']}...")
         sleep(60 * SLEEP_MINUTES)
